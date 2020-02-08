@@ -17,6 +17,7 @@
 package org.labkey.immport;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.labkey.api.admin.FolderSerializationRegistry;
 import org.labkey.api.data.Container;
 import org.labkey.api.module.DefaultModule;
@@ -57,7 +58,7 @@ public class ImmPortModule extends DefaultModule
     }
 
     @Override
-    public double getVersion()
+    public @Nullable Double getSchemaVersion()
     {
         return 19.12;
     }
