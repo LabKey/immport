@@ -1,0 +1,175 @@
+
+<script src="<%=contextPath%>/immport/ParticipantGroupAPI.js"></script>
+
+
+<script>
+    function browseTest()
+    {
+        LABKEY.Study.ParticipantGroup.browseParticipantGroups(
+                {
+                    type : ["participantGroup"],
+                    success : function(res)
+                    {
+                        document.getElementById("participantGroups").innerText = res.responseText;
+                    }
+                });
+    }
+    function getTest()
+    {
+        var groupId = parseInt(document.getElementById("groupId").value);
+        LABKEY.Study.ParticipantGroup.getParticipantGroup(
+        {
+            groupId : groupId,
+            success : function(res)
+            {
+                document.getElementById("getResponse").innerText = res.responseText;
+            }
+        });
+    }
+    function saveTest()
+    {
+        var v = document.getElementById("saveParticipantIds").value;
+        var a = !v ? [] : v.split(" ");
+        var participantIds = [];
+        for (var i=0 ; i<a.length ; i++)
+            if (a[i])
+                participantIds.push(a[i]);
+
+        LABKEY.Study.ParticipantGroup.saveParticipantGroup(
+        {
+            groupId: parseInt(document.getElementById("saveGroupId").value),
+            label: document.getElementById("saveLabel").value || "",
+            description: document.getElementById("saveDescription").value || "",
+            filters: document.getElementById("saveFilters").value || "",
+            participantIds: participantIds,
+            categoryId: 0,
+            categoryType: "list",
+            success : function(res)
+            {
+                document.getElementById("saveResponse").innerText = res.responseText;
+                browseTest();
+            }
+        });
+    }
+    function deleteTest()
+    {
+        var groupId = parseInt(document.getElementById("deleteGroupId").value);
+        LABKEY.Study.ParticipantGroup.deleteParticipantGroup(
+                {
+                    groupId : groupId,
+                    success : function(res)
+                    {
+                        document.getElementById("deleteResponse").innerText = res.responseText;
+                        browseTest();
+                    }
+                });
+    }
+    function sessionTest()
+    {
+        LABKEY.Study.ParticipantGroup.getSessionParticipantGroup(
+        {
+            success : function(res)
+            {
+                document.getElementById("sessionGroup").innerText = res.responseText;
+            }
+        });
+    }
+    function setTest()
+    {
+        var v = document.getElementById("setParticipantIds").value;
+        var a = !v ? [] : v.split(" ");
+        var participantIds = [];
+        for (var i=0 ; i<a.length ; i++)
+            if (a[i])
+                participantIds.push(a[i]);
+
+        LABKEY.Study.ParticipantGroup.setSessionParticipantGroup(
+        {
+            groupId: parseInt(document.getElementById("setGroupId").value),
+            label: document.getElementById("setLabel").value || "",
+            description: document.getElementById("setDescription").value || "",
+            filters: document.getElementById("setFilters").value || "",
+            participantIds: participantIds,
+            success : function(res)
+            {
+                document.getElementById("setResponse").innerText = res.responseText;
+                sessionTest();
+            }
+        });
+    }
+    function clearTest()
+    {
+        LABKEY.Study.ParticipantGroup.clearSessionParticipantGroup(
+                {
+                    success : function(res)
+                    {
+                        document.getElementById("clearResponse").innerText = res.responseText;
+                        sessionTest();
+                    }
+                });
+    }
+</script>
+
+
+<fieldset>
+<button onclick="browseTest()">browse</button>
+<div>
+    <pre id="participantGroups"></pre>
+</div>
+</fieldset>
+<br>
+<fieldset>
+<button onclick="getTest()">get</button> groupid: <input id="groupId">
+    <div>
+        <pre id="getResponse"></pre>
+    </div>
+</fieldset>
+<br>
+<fieldset>
+    <button onclick="saveTest()">save</button><br>
+    groupId: <input id="saveGroupId"><br>
+    label: <input id="saveLabel"><br>
+    description: <input id="saveDescription"><br>
+    filters(json): <textarea id="saveFilters"></textarea><br>
+    participantIds(space separated): <textarea id="saveParticipantIds"></textarea><br>
+    <div>
+        <pre id="saveResponse"></pre>
+    </div>
+</fieldset>
+<br>
+<fieldset>
+<button onclick="deleteTest()">delete</button> groupid: <input id="deleteGroupId">
+    <div>
+        <pre id="deleteResponse"></pre>
+    </div>
+</fieldset>
+<br>
+<fieldset>
+    <button onclick="sessionTest()">session</button>
+    <div>
+        <pre id="sessionGroup"></pre>
+    </div>
+</fieldset>
+<br>
+<fieldset>
+<button onclick="setTest()">set</button><br>
+    groupId: <input id="setGroupId"><br>
+    label: <input id="setLabel"><br>
+    description: <input id="setDescription"><br>
+    filters(json): <textarea id="setFilters"></textarea><br>
+    participantIds(space separated): <textarea id="setParticipantIds"></textarea><br>
+    categoryType: <input disabled value="list"><br>
+    <div>
+        <pre id="setResponse"></pre>
+    </div>
+</fieldset>
+<br>
+<fieldset>
+<button onclick="clearTest()">clear</button>
+    <div>
+        <pre id="clearResponse"></pre>
+    </div>
+</fieldset>
+
+<h3>Participant Groups</h3>
+<h3>Session Group</h3>

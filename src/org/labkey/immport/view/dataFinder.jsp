@@ -57,7 +57,7 @@
         dependencies.add("angular");
         dependencies.add("dataFinder.css");
         dependencies.add("immport/dataFinder.js");
-        dependencies.add("immport/ParticipantGroup.js");
+        dependencies.add("immport/ParticipantGroupWindow.js");
         dependencies.add("immport/hipc.css");
     }
 %>
