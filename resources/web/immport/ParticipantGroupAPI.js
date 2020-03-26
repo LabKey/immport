@@ -35,7 +35,7 @@ LABKEY.Study.ParticipantGroup = new function()
                 jsonData: jsonData,
                 scope: config.scope || window,
                 success: config.success,
-                failure: config.failure,
+                failure: config.failure
             });
         },
 
@@ -143,9 +143,8 @@ LABKEY.Study.ParticipantGroup = new function()
         getSessionParticipantGroup : function(config)
         {
             LABKEY.Ajax.request({
-                url: LABKEY.ActionURL.buildURL('participant-group', 'sessionParticipantGroup.api'),
-                method: 'POST',
-                jsonData: {},
+                url: LABKEY.ActionURL.buildURL('participant-group', 'getSessionParticipantGroup.api'),
+                method: 'GET',
                 scope: config.scope || window,
                 success: config.success,
                 failure: config.failure
@@ -156,6 +155,8 @@ LABKEY.Study.ParticipantGroup = new function()
         /** Create or re-save a participant group
          * TODO permissions shared/private?
          * @param config An object that contains the following configuration parameters
+         * @param {int} config.groupId specify the id of a saved participant group to use as the session participant group.
+         *  This is not used with the other parameters (label, description, filters). Leave unspecified to use an unsaved session group.
          * @param {String} config.label
          * @param {String} config.description
          * @param {String} config.filters
@@ -164,7 +165,10 @@ LABKEY.Study.ParticipantGroup = new function()
          */
         setSessionParticipantGroup : function(config)
         {
-            var jsonData = {
+            var groupId = config.groupId || config.rowId || 0;
+            var jsonData = groupId ? {rowId : groupId} :
+            {
+                rowId: groupId,
                 label: defaultValue(config.label, ''),
                 description : defaultValue(config.description, ''),
                 filters : defaultValue(config.filters, ''),
@@ -195,6 +199,6 @@ LABKEY.Study.ParticipantGroup = new function()
                 success: config.success,
                 failure: config.failure
             });
-        },
+        }
     };
 };
