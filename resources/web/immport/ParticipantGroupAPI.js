@@ -15,10 +15,34 @@ LABKEY.Study.ParticipantGroup = new function()
          * @param {boolean} config.includePrivateGroups
          * @param {String[]} config.type indicate what types of data to return values can be "participantGroup", "participantCategory", "cohort"
          * @param {boolean} config.includeParticipantIds include the participant list in the response, this can greatly increase the size of the response data, default==false
+         *              <b>in release 20.3 and early includeParticipantIds==true only works for cohorts</b>
          * @param {int} config.categoryId filter groups list to a particular category
          * @param {boolean} config.includeUnassigned if true then return a virtual "not in any group" or "not in any cohort" group for each category
          * @param {boolean} config.distinctCategories if true then private categories hide shared categories with the same label, default==true
-         * @param {function} config.success TODO
+         * @param {function} config.success
+         * @returns {object} success:true, groups:[array of ParticipantGroup]}
+         *
+         * ParticipantGroup
+         * <ul>
+         *     <li>id: {int} unique identifier, value > 0 if this is a saved participant group
+         *     <li>participantIds:[] array of {string} participantIds
+         *     <li>participantSet: // do not use (bug)
+         *     <li>label: {string}
+         *     <li>description: {string}
+         *     <li>filters: {string} application defined string used to record how this participant group was created/defined
+         *     <li>type: {string} "participantGroup", "cohort", or "participantCategory"
+         *     <li>category: {object} see ParticipantGroupCategory description
+         * </ul>
+         *
+         * ParticipantGroupCategory
+         * <ul>
+         *     <li> rowId: unique identifier for the category
+         *     <li> shared: {boolean} created for use by this user, or shared across users
+         *     <li> label: {string}
+         *     <li> type: {string}         "manual", "list", "query", or "cohort"
+         *     <li> participantIds: [{string}] huh? bug?
+         *     <li> filters: {string} bug?
+         * </ul>
          */
         browseParticipantGroups : function(config) {
             var jsonData = {
@@ -44,6 +68,7 @@ LABKEY.Study.ParticipantGroup = new function()
          * @param {int} config.groupId
          * @param {boolean} config.includeParticipantIds include the participant list in the response default==true
          * @param {function} config.success TODO
+         * @returns same as #browseParticipantGroups except 'groups' array will return zero or one group.
          */
         getParticipantGroup : function(config)
         {
