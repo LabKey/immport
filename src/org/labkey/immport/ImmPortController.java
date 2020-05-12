@@ -60,6 +60,7 @@ import org.labkey.api.query.DefaultSchema;
 import org.labkey.api.query.FieldKey;
 import org.labkey.api.query.QuerySchema;
 import org.labkey.api.query.QueryService;
+import org.labkey.api.query.UserSchema;
 import org.labkey.api.security.RequiresNoPermission;
 import org.labkey.api.security.RequiresPermission;
 import org.labkey.api.security.RequiresSiteAdmin;
@@ -511,6 +512,10 @@ public class ImmPortController extends SpringActionController
 
                 try (ZipFile zip = new ZipFile(response.getOutputStream(), true))
                 {
+                    UserSchema studySchema = QueryService.get().getUserSchema(getUser(), container, "study");
+                    if (null == studySchema)
+                        return;
+
                     svc.writeTables(container, getUser(), zip, form.getSchemas(), form.getHeaderType());
 
                     List<? extends FileBean> files = null;
@@ -521,17 +526,17 @@ public class ImmPortController extends SpringActionController
                         if (file.equals("fcs_control_files"))
                         {
                             folder = "flow_cytometry";
-                            files = new TableSelector(QueryService.get().getUserSchema(getUser(), container, "study").getTable(file)).getArrayList(FCSControlFilesBean.class);
+                            files = new TableSelector(studySchema.getTable(file, null)).getArrayList(FCSControlFilesBean.class);
                         }
                         else if (file.equals("fcs_sample_files"))
                         {
                             folder = "flow_cytometry";
-                            files = new TableSelector(QueryService.get().getUserSchema(getUser(), container, "study").getTable(file)).getArrayList(FCSSampleFilesBean.class);
+                            files = new TableSelector(studySchema.getTable(file, null)).getArrayList(FCSSampleFilesBean.class);
                         }
                         else if (file.equals("gene_expression_files"))
                         {
                             folder = "gene_expression";
-                            files = new TableSelector(QueryService.get().getUserSchema(getUser(), container, "study").getTable(file)).getArrayList(GeneExpressionFilesBean.class);
+                            files = new TableSelector(studySchema.getTable(file, null)).getArrayList(GeneExpressionFilesBean.class);
                         }
 
                         if(null != files)
@@ -545,7 +550,7 @@ public class ImmPortController extends SpringActionController
                             folder = "exprs_matrices";
                             matrix = "gene_expression_matrices";
 
-                            ContainerFilter cf = new ContainerFilter.CurrentAndSubfolders(getUser());
+                            ContainerFilter cf = ContainerFilter.Type.CurrentAndSubfolders.create(studySchema);
                             TableInfo tableInf = QueryService.get().getUserSchema(getUser(), container, "assay.ExpressionMatrix.matrix").getTable("SelectedRuns", cf);
                             if (null != tableInf)
                             {
@@ -894,8 +899,7 @@ public class ImmPortController extends SpringActionController
             DbSchema immport =  DbSchema.get("immport",DbSchemaType.Module);
             DbScope scope = immport.getScope();
 
-            Container project = getContainer().getProject();
-            SQLFragment filter = new ContainerFilter.AllInProject(getUser()).getSQLFragment(immport, new SQLFragment("entityid"),getContainer().getProject());
+            SQLFragment filter = ContainerFilter.Type.AllInProject.create(getContainer(),getUser()).getSQLFragment(immport, new SQLFragment("entityid"));
             SQLFragment select = new SQLFragment(
                 "select containers.name, containers.entityid, properties.name as module\n" +
                     "from \n" +

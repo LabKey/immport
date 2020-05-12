@@ -23,6 +23,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.TreeSet" %>
+<%@ page import="org.labkey.api.query.UserSchema" %>
 <%@ page extends="org.labkey.api.jsp.JspBase"%>
 
 <labkey:errors/>
@@ -50,13 +51,13 @@
     }
 
     String expression_runs_sql  = "SELECT folder.rowid as folderId, folder.name as folderName, rowid as runId, name as runName, featureSet.Name as featureSetName FROM assay.expressionmatrix.\"" + assayName + "\".Runs";
-    QuerySchema study = DefaultSchema.get(getUser(), getContainer(), "study");
+    UserSchema study = (UserSchema)DefaultSchema.get(getUser(), getContainer(), "study");
     if (null != study && null != study.getTable("participant"))
         expression_runs_sql += "\nWHERE folder IN (SELECT Container FROM study.participant)";
     expression_runs_sql += "\n ORDER BY folderName, runName, runId";
     // ARG need a table info to use container filter
     QueryDefinition qd = QueryService.get().saveSessionQuery(getViewContext(), getContainer(), "study", expression_runs_sql);
-    qd.setContainerFilter(new ContainerFilter.CurrentAndSubfolders(getUser()));
+    qd.setContainerFilter(ContainerFilter.Type.CurrentAndSubfolders.create(study));
     ArrayList<QueryException> errors = new ArrayList<>();
     TableInfo t = qd.getTable(errors, false);
     if (!errors.isEmpty())

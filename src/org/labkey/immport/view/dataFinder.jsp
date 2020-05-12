@@ -303,7 +303,7 @@ if (!c.isRoot())
     comma = "\n";
     Container p = c.getProject();
     QuerySchema s = DefaultSchema.get(context.getUser(), p).getSchema("study");
-    TableInfo sp = s.getTable("StudyProperties", new ContainerFilter.AllInProject(context.getUser()));
+    TableInfo sp = s.getTable("StudyProperties", ContainerFilter.Type.AllInProject.create(s));
     Collection<Map<String, Object>> maps = new TableSelector(sp).getMapCollection();
 
     long now = HeartBeat.currentTimeMillis();
