@@ -106,7 +106,7 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
             if (null != s && s.isDataspaceStudy())
             {
                 cf = new DataspaceContainerFilter(user, s);
-                multiFolder = (cf.getIds(ctx.getContainer()).size() > 1);
+                multiFolder = (cf.getIds().size() > 1);
             }
 
             QuerySchema schema = DefaultSchema.get(user, c).getSchema(SCHEMA_NAME);
