@@ -190,6 +190,7 @@ public class ImmPortSchema extends UserSchema
                 return true;
             }
 
+            @Override
             public QuerySchema createSchema(DefaultSchema schema, Module module)
             {
                 boolean isActive = super.isAvailable(schema, module);

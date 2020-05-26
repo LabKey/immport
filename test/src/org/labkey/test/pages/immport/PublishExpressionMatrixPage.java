@@ -42,6 +42,7 @@ public class PublishExpressionMatrixPage extends LabKeyPage<PublishExpressionMat
         return new ImportExpressionMatrixPage(getDriver());
     }
 
+    @Override
     protected ElementCache newElementCache()
     {
         return new ElementCache();

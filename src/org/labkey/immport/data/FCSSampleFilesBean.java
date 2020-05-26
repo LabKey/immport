@@ -28,11 +28,13 @@ public class FCSSampleFilesBean implements FileBean
         this.file_info_name = file_info_name;
     }
 
+    @Override
     public String getFileName()
     {
         return this.file_info_name;
     }
 
+    @Override
     public String getStudy() { return this.study_accession; }
 
 }

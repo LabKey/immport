@@ -144,11 +144,13 @@ public class ImmPortController extends SpringActionController
     @RequiresPermission(ReadPermission.class)
     public class BeginAction extends SimpleViewAction
     {
+        @Override
         public ModelAndView getView(Object o, BindException errors)
         {
             return new JspView("/org/labkey/immport/view/begin.jsp");
         }
 
+        @Override
         public void addNavTrail(NavTree root)
         {
         }
@@ -374,6 +376,7 @@ public class ImmPortController extends SpringActionController
             _schemas = schemas;
         }
 
+        @Override
         public BindException bindParameters(PropertyValues values)
         {
             BindException errors = new NullSafeBindException(this, "form");
@@ -714,6 +717,7 @@ public class ImmPortController extends SpringActionController
     @RequiresPermission(ReadPermission.class)
     public class DataFinderAction extends SimpleViewAction<SentGroupForm>
     {
+        @Override
         public ModelAndView getView(SentGroupForm form, BindException errors) throws Exception
         {
             // if the user is viewing a sent participant group, remove any notifications related to it
@@ -729,6 +733,7 @@ public class ImmPortController extends SpringActionController
             return wp;
         }
 
+        @Override
         public void addNavTrail(NavTree root)
         {
         }

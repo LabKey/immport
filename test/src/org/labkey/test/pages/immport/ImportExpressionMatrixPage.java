@@ -45,6 +45,7 @@ public class ImportExpressionMatrixPage extends LabKeyPage<ImportExpressionMatri
         return new PipelineStatusTable(this);
     }
 
+    @Override
     protected ElementCache newElementCache()
     {
         return new ElementCache();

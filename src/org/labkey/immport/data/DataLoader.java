@@ -1126,6 +1126,7 @@ public class DataLoader extends PipelineJob
             final int nameField = index;
             return new FilterDataIterator(it)
             {
+                @Override
                 protected boolean accept()
                 {
                     String name = (String)get(nameField);

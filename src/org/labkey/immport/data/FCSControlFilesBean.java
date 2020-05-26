@@ -28,10 +28,12 @@ public class FCSControlFilesBean implements FileBean
         this.control_file = control_file;
     }
 
+    @Override
     public String getFileName()
     {
         return this.control_file;
     }
 
+    @Override
     public String getStudy() { return this.study_accession; }
 }

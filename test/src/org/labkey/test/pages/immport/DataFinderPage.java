@@ -700,6 +700,7 @@ public class DataFinderPage extends LabKeyPage
             this.card = card;
         }
 
+        @Override
         public WebElement getComponentElement()
         {
             return card;

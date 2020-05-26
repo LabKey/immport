@@ -8,6 +8,7 @@ public class GeneExpressionMatricesBean implements FileBean
     String Study;
     String download_link;
 
+    @Override
     public String getStudy()
     {
         return Study;
@@ -28,6 +29,7 @@ public class GeneExpressionMatricesBean implements FileBean
         this.download_link = download_link;
     }
 
+    @Override
     public String getFileName()
     {
         return this.download_link;
