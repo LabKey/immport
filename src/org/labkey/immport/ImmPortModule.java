@@ -110,7 +110,7 @@ public class ImmPortModule extends DefaultModule
             {
                 Container studies = ContainerManager.getRoot().getChild("Studies");
                 if (null != studies)
-                    return studies.getStartURL(null).toLocalString(false);
+                    return studies.getStartURL(null).getLocalURIString(false);
                 return "";
             }
         };
