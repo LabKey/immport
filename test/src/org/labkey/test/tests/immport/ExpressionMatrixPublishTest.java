@@ -112,7 +112,7 @@ public class ExpressionMatrixPublishTest extends BaseExpressionMatrixTest implem
         goToSchemaBrowser();
         selectQuery("assay.ExpressionMatrix." + ASSAY_NAME, "FeatureDataBySample");
 
-        // Re-publish/merge not supported; sample set throws duplicate key error
+        // Re-publish/merge not supported; sample type throws duplicate key error
     }
 
     @Test
