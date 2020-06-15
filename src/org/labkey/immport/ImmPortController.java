@@ -1202,7 +1202,7 @@ public class ImmPortController extends SpringActionController
                 ExperimentService es = ExperimentService.get();
                 ExperimentService.XarImportOptions options = new ExperimentService.XarImportOptions()
                         .setUseOriginalDataFileUrl(true)
-                        .setStrictValidateExistingSampleSet(false);
+                        .setStrictValidateExistingSampleType(false);
                 es.importXar(source, this, options);
                 getLogger().info("Finished importing: " + xarFile.getPath());
                 if (getActiveTaskStatus() != TaskStatus.error)
