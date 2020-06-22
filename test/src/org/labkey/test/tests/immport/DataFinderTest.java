@@ -28,6 +28,7 @@ import org.junit.experimental.categories.Category;
 import org.labkey.remoteapi.Command;
 import org.labkey.remoteapi.CommandException;
 import org.labkey.remoteapi.Connection;
+import org.labkey.remoteapi.security.WhoAmICommand;
 import org.labkey.test.BaseWebDriverTest;
 import org.labkey.test.Locator;
 import org.labkey.test.Locators;
@@ -238,7 +239,8 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
 
     public void clearSharedStudyContainerFilter() throws IOException, CommandException
     {
-        Connection connection = createDefaultConnection(false);
+        Connection connection = createDefaultConnection(true);
+        new WhoAmICommand().execute(connection, "/"); // Populate session & csrf
         Command command = new Command("study-shared", "sharedStudyContainerFilter")
         {
             @Override
