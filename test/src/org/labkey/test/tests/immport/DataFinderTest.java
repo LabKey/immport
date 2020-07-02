@@ -23,6 +23,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.labkey.remoteapi.Command;
@@ -641,6 +642,7 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
     }
 
     @Test
+    @Ignore ("Group menu interactions are unreliable and this data finder is no longer in use.")
     public void testGroupSaveAndLoad()
     {
         DataFinderPage finder = new DataFinderPage(this);
