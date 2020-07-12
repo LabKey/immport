@@ -34,7 +34,7 @@ import org.labkey.api.data.DbSchema;
 import org.labkey.api.data.DbSchemaType;
 import org.labkey.api.data.DbScope;
 import org.labkey.api.data.JdbcType;
-import org.labkey.api.data.Parameter;
+import org.labkey.api.data.ParameterMapStatement;
 import org.labkey.api.data.SQLFragment;
 import org.labkey.api.data.SqlExecutor;
 import org.labkey.api.data.SqlSelector;
@@ -316,7 +316,7 @@ public class DataLoader extends PipelineJob
         }
 
         // TODO don't hard code the custom queries, generate the "upsert" statement using schema meta-data
-        abstract Parameter.ParameterMap getParameterMap() throws SQLException;
+        abstract ParameterMapStatement getParameterMap() throws SQLException;
 
         @Override
         int copyFrom(Container c, User user, DataIteratorContext context, DataIteratorBuilder from, DataLoader dl) throws IOException, BatchValidationException, SQLException
@@ -362,9 +362,9 @@ public class DataLoader extends PipelineJob
 
     static class _StatementDataIterator extends StatementDataIterator
     {
-        _StatementDataIterator(DataIterator data, @Nullable Parameter.ParameterMap map, DataIteratorContext context)
+        _StatementDataIterator(DataIterator data, @Nullable ParameterMapStatement map, DataIteratorContext context)
         {
-            super(data,map,context);
+            super(data, context, map);
         }
     }
 
