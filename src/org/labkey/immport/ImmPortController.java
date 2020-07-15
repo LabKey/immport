@@ -19,7 +19,8 @@ package org.labkey.immport;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.labkey.api.action.Action;
 import org.labkey.api.action.ActionType;
@@ -123,7 +124,7 @@ import static org.labkey.api.pipeline.PipelineService.PRIMARY_ROOT;
 
 public class ImmPortController extends SpringActionController
 {
-    private static final Logger LOG = Logger.getLogger(ImmPortController.class);
+    private static final Logger LOG = LogManager.getLogger(ImmPortController.class);
 
     private static final DefaultActionResolver _actionResolver = new DefaultActionResolver(ImmPortController.class);
 

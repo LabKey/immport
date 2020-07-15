@@ -22,7 +22,8 @@ import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.FileSystemManager;
 import org.apache.commons.vfs2.FileType;
 import org.apache.commons.vfs2.VFS;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.labkey.api.collections.CaseInsensitiveHashMap;
@@ -96,7 +97,7 @@ import java.util.stream.Collectors;
 
 public class DataLoader extends PipelineJob
 {
-    static final transient Logger LOG = Logger.getLogger(DataLoader.class);
+    static final transient Logger LOG = LogManager.getLogger(DataLoader.class);
 
     Map<String,Map<String,String>> _lookupDictionary = new CaseInsensitiveHashMap<>();
 
