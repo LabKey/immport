@@ -68,10 +68,10 @@ import org.labkey.api.security.permissions.AdminPermission;
 import org.labkey.api.security.permissions.ReadPermission;
 import org.labkey.api.services.ServiceRegistry;
 import org.labkey.api.study.ParticipantCategory;
-import org.labkey.api.util.CSRFUtil;
 import org.labkey.api.util.FileUtil;
 import org.labkey.api.util.PageFlowUtil;
 import org.labkey.api.util.URLHelper;
+import org.labkey.api.util.element.CsrfInput;
 import org.labkey.api.view.ActionURL;
 import org.labkey.api.view.HtmlView;
 import org.labkey.api.view.JspView;
@@ -257,7 +257,7 @@ public class ImmPortController extends SpringActionController
             }
             return new HtmlView("<p class='labkey-error'>" + PageFlowUtil.filter(error) + "</p>" +
                 "<form name='populateCube' method='post' onsubmit='Ext4.getBody().mask();true;'>Copy from immport schema to cube dimensions<br>" +
-                "<input type=hidden name='X-LABKEY-CSRF' value='" + CSRFUtil.getExpectedToken(getViewContext()) + "'>" +
+                new CsrfInput(getViewContext()).toString() +
                 "<input type=submit></form>" +
                 "<p></p>" + log);
         }

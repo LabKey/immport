@@ -8,7 +8,6 @@
 <%@ page import="org.labkey.api.pipeline.PipelineService" %>
 <%@ page import="org.labkey.api.util.Path" %>
 <%@ page import="org.labkey.api.view.BadRequestException" %>
-<%@ page import="static org.labkey.api.reports.RserveScriptEngine.PIPELINE_ROOT" %>
 <%@ page import="org.labkey.api.view.HttpView" %>
 <%@ page import="org.labkey.immport.ImmPortController" %>
 <%@ page import="java.io.File" %>
@@ -53,7 +52,7 @@
     paths.addAll(xarListing(base));
 
 %>
-    <labkey:form method="POST" name="importExpressionMatrix" action="<%=h(getViewContext().cloneActionURL().deleteParameters())%>">
+    <labkey:form method="POST" name="importExpressionMatrix" action="<%=getViewContext().cloneActionURL().deleteParameters()%>">
 <%
     boolean foundSelected = false;
     %><p>Xar file:&nbsp;<select title="Xar File" required name="xarPath"><%
