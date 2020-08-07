@@ -31,6 +31,7 @@ import org.labkey.api.query.QueryView;
 import org.labkey.api.rstudio.RStudioService;
 import org.labkey.api.search.SearchService;
 import org.labkey.api.security.User;
+import org.labkey.api.security.UserManager;
 import org.labkey.api.security.permissions.AdminOperationsPermission;
 import org.labkey.api.security.roles.RoleManager;
 import org.labkey.api.services.ServiceRegistry;
@@ -110,7 +111,7 @@ public class ImmPortModule extends DefaultModule
             {
                 Container studies = ContainerManager.getRoot().getChild("Studies");
                 if (null != studies)
-                    return studies.getStartURL(null).getLocalURIString(false);
+                    return studies.getStartURL(UserManager.getGuestUser()).getLocalURIString(false);
                 return "";
             }
         };
