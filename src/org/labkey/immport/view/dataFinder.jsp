@@ -1,19 +1,19 @@
 <%
-    /*
-     * Copyright (c) 2014-2015 LabKey Corporation
-     *
-     * Licensed under the Apache License, Version 2.0 (the "License");
-     * you may not use this file except in compliance with the License.
-     * You may obtain a copy of the License at
-     *
-     *     http://www.apache.org/licenses/LICENSE-2.0
-     *
-     * Unless required by applicable law or agreed to in writing, software
-     * distributed under the License is distributed on an "AS IS" BASIS,
-     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     * See the License for the specific language governing permissions and
-     * limitations under the License.
-     */
+/*
+ * Copyright (c) 2014-2015 LabKey Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 %>
 <%@ page import="org.apache.commons.lang3.StringUtils" %>
 <%@ page import="org.labkey.api.data.Container" %>
@@ -79,8 +79,7 @@
             "\tWHERE role_in_study ilike '%principal%'\n" +
             "\tGROUP BY study_accession) pi ON study.study_accession = pi.study_accession\n").getArrayList(StudyBean.class);
 
-    String hipcImg = request.getContextPath() + "/immport/hipc.png";
-    Collections.sort(studies, (o1, o2) -> {
+    studies.sort((o1, o2) -> {
         String a = o1.getStudy_accession();
         String b = o2.getStudy_accession();
         return Integer.parseInt(a.substring(3)) - Integer.parseInt(b.substring(3));
@@ -93,7 +92,6 @@
 
 <div id="dataFinderWrapper" class="labkey-data-finder-outer">
 <div id="dataFinderApp" class="x-hidden labkey-data-finder-inner" ng-app="dataFinderApp" ng-controller="dataFinder">
-
     <table id="dataFinderTable" border=0 class="labkey-data-finder">
         <tr>
             <td>
@@ -138,9 +136,7 @@
                         </ul>
                         <span class="df-clear-filter active" ng-show="hasFilters()" ng-click="clearAllClick();">[clear all]</span>
                     </div>
-
                 </div>
-
             </td>
             <td>
                 <div class="studyfinder-header">
@@ -155,21 +151,21 @@
                     </span>
                     <span class="study-search">{{searchMessage}}</span>
                 </div>
-		<div class="df-search-message">
+		        <div class="df-search-message">
                     <span id="message" class="labkey-filter-message" ng-if="!loadedStudiesShown()">No data are available for participants since you are viewing unloaded studies.</span>
-		</div>
-		<div class="df-help-links">
-                <%=link("quick help").href("#").onClick("start_tutorial()").id("showTutorial")%>
-                <%=link("Export Study Datasets", ImmPortController.ExportStudyDatasetsAction.class)%>
-                <%
-                URLHelper startRstudio = null;
-                RStudioService rstudio = ServiceRegistry.get(RStudioService.class);
-                if (null != rstudio)
-                    startRstudio = rstudio.getRStudioLink(context.getUser(), context.getContainer());
-                if (null != startRstudio)
-                {
-                    %><%=link("RStudio", new ActionURL("rstudio", "start", ContainerManager.getRoot()))%><%
-                } %>
+		        </div>
+		        <div class="df-help-links">
+                    <%=link("quick help").href("#").onClick("start_tutorial()").id("showTutorial")%>
+                    <%=link("Export Study Datasets", ImmPortController.ExportStudyDatasetsAction.class)%>
+                    <%
+                    URLHelper startRstudio = null;
+                    RStudioService rstudio = ServiceRegistry.get(RStudioService.class);
+                    if (null != rstudio)
+                        startRstudio = rstudio.getRStudioLink(context.getUser(), context.getContainer());
+                    if (null != startRstudio)
+                    {
+                        %><%=link("RStudio", new ActionURL("rstudio", "start", ContainerManager.getRoot()))%><%
+                    } %>
                 </div>
             </td>
         </tr>
@@ -209,7 +205,6 @@
             </td>
         </tr>
     </table>
-
 
 <div id="studyPopup"></div>
 
@@ -287,7 +282,7 @@ var studyData = [<%
     String comma = "\n  ";
     for (StudyBean study : studies)
     {
-        %><%=text(comma)%>[<%=q(study.getStudy_accession())%>,<%=text(study.getStudy_accession().substring(3))%>,<%=q(StringUtils.defaultString(study.getBrief_title(),study.getOfficial_title()))%>,<%=q(study.getPi_names())%>,<%=study.getRestricted()?"true":"false"%>]<%
+        %><%=text(comma)%>[<%=q(study.getStudy_accession())%>,<%=text(study.getStudy_accession().substring(3))%>,<%=q(StringUtils.defaultString(study.getBrief_title(),study.getOfficial_title()))%>,<%=q(study.getPi_names())%>,<%=study.getRestricted()%>]<%
         comma = ",\n  ";
     }
 %>];
