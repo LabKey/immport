@@ -16,11 +16,11 @@
  */
 %>
 <%@ page import="org.labkey.api.data.Container" %>
+<%@ page import="org.labkey.api.util.HtmlString" %>
 <%@ page import="org.labkey.api.util.URLHelper" %>
 <%@ page import="org.labkey.api.view.ActionURL" %>
 <%@ page import="org.labkey.immport.ImmPortController" %>
 <%@ page import="org.labkey.immport.ImmPortModule" %>
-<%@ page import="static org.apache.commons.lang3.StringUtils.isBlank" %>
 <%@ page extends="org.labkey.api.jsp.JspBase" %>
 <%
     Container c = getContainer();
@@ -32,7 +32,7 @@
 <b>To load new ImmPort archive</b><br>
 <%=link("Import Archive", new ActionURL(ImmPortController.ImportArchiveAction.class, c))%><br>
 <%=link("Populate cube", new ActionURL(ImmPortController.PopulateCubeAction.class, c))%><br>
-<%= null==dataFinder ? "" : link("Data Finder", dataFinder) %><br>
+<%= null==dataFinder ? HtmlString.EMPTY_STRING : link("Data Finder", dataFinder) %><br>
 <%=link("Public/Restricted Studies", new ActionURL(ImmPortController.RestrictedStudiesAction.class, c))%><br>
 </p>
 <p>
