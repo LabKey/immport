@@ -334,7 +334,7 @@ if (!c.isRoot())
                 %>uniqueName:<%=q("[Study].["+study_accession+"]")%>, <%
                 %>hipc_funded:<%=text(isTrue(StringUtils.contains(bean.getProgram_title(),"HIPC")))%>,<%
                 %>highlight:<%=text(highlight?"true":"false")%>,<%
-                %>containerId:<%=q((String)map.get("container"))%>, url:<%=q(url.getLocalURIString())%>}<%
+                %>containerId:<%=q((String)map.get("container"))%>, url:<%=q(url)%>}<%
                comma = ",\n";
            }
        }
