@@ -175,6 +175,13 @@
             <column columnName="protocol_accession"/>
         </columns>
     </table>
+    <table tableName="study_2_condition_or_disease" tableDbType="TABLE">
+        <columns>
+            <column columnName="study_accession"/>
+            <column columnName="condition_reported"/>
+            <column columnName="condition_preferred"/>
+        </columns>
+    </table>
     <table tableName="period" tableDbType="TABLE">
         <columns>
             <column columnName="period_accession"/>
@@ -403,18 +410,6 @@
             <column columnName="season_list"/>
             <column columnName="taxonomy_id"/>
             <column columnName="virus_name"/>
-        </columns>
-    </table>
-    <table tableName="study_image" tableDbType="TABLE">
-        <columns>
-            <column columnName="schematic_accession"/>
-            <column columnName="description"/>
-            <column columnName="image_filename"/>
-            <column columnName="image_map_filename"/>
-            <column columnName="image_type"/>
-            <column columnName="name"/>
-            <column columnName="study_accession"/>
-            <column columnName="workspace_id"/>
         </columns>
     </table>
     <table tableName="lk_plate_type" tableDbType="TABLE">
@@ -722,31 +717,6 @@
             <column columnName="visible"/>
         </columns>
     </table>
-    <table tableName="rna_seq_result" tableDbType="TABLE">
-        <columns>
-            <column columnName="result_id"/>
-            <column columnName="arm_accession"/>
-            <column columnName="biosample_accession"/>
-            <column columnName="comments"/>
-            <column columnName="experiment_accession"/>
-            <column columnName="expsample_accession"/>
-            <column columnName="reference_repository_name"/>
-            <column columnName="reference_transcript_id"/>
-            <column columnName="repository_accession"/>
-            <column columnName="repository_name"/>
-            <column columnName="result_unit_preferred"/>
-            <column columnName="result_unit_reported"/>
-            <column columnName="study_accession"/>
-            <column columnName="study_time_collected"/>
-            <column columnName="study_time_collected_unit"/>
-            <column columnName="subject_accession"/>
-            <column columnName="transcript_type_preferred"/>
-            <column columnName="transcript_type_reported"/>
-            <column columnName="value_preferred"/>
-            <column columnName="value_reported"/>
-            <column columnName="workspace_id"/>
-        </columns>
-    </table>
     <table tableName="lk_sample_type" tableDbType="TABLE">
         <columns>
             <column columnName="name"/>
@@ -827,13 +797,6 @@
         </columns>
     </table>
     <table tableName="lk_research_focus" tableDbType="TABLE">
-        <columns>
-            <column columnName="name"/>
-            <column columnName="description"/>
-            <column columnName="link"/>
-        </columns>
-    </table>
-    <table tableName="lk_study_type" tableDbType="TABLE">
         <columns>
             <column columnName="name"/>
             <column columnName="description"/>
@@ -1409,12 +1372,6 @@
             <column columnName="result_value_preferred"/>
             <column columnName="result_value_reported"/>
             <column columnName="workspace_id"/>
-        </columns>
-    </table>
-    <table tableName="planned_visit_2_arm" tableDbType="TABLE">
-        <columns>
-            <column columnName="planned_visit_accession"/>
-            <column columnName="arm_accession"/>
         </columns>
     </table>
     <table tableName="elispot_result" tableDbType="TABLE">

@@ -636,7 +636,6 @@ public class DataLoader extends PipelineJob
         new SharedCopyConfig("lk_species"),
         new SharedCopyConfig("lk_study_file_type"),
         new SharedCopyConfig("lk_study_panel"),
-        new LookupCopyConfig("lk_study_type"),
         new LookupCopyConfig("lk_subject_location"),
         new SharedCopyConfig("lk_t0_event"),
         new SharedCopyConfig("lk_time_unit"),
@@ -670,7 +669,6 @@ public class DataLoader extends PipelineJob
         new StudyCopyConfig("study_categorization"),
         new StudyCopyConfig("study_file"),
         new StudyCopyConfig("study_glossary"),
-        new StudyCopyConfig("study_image"),
         new StudyCopyConfig("study_link"),
         new StudyCopyConfig("study_personnel"),
         new StudyCopyConfig("study_pubmed"),
@@ -726,7 +724,6 @@ public class DataLoader extends PipelineJob
         },
         new StudyCopyConfig("pcr_result"),
         new StudyCopyConfig("subject_measure_result"),
-        new StudyCopyConfig("rna_seq_result"),
 
             // junction tables
         new ArmCopyConfig("arm_2_subject"),
@@ -736,19 +733,15 @@ public class DataLoader extends PipelineJob
         new ExpsampleCopyConfig("expsample_2_file_info"),
         new ExpsampleCopyConfig("expsample_2_reagent"),
         new StudyCopyConfig("study_2_protocol"),
+        new StudyCopyConfig("study_2_condition_or_disease"),
         new SharedCopyConfig("control_sample_2_file_info"),
         new ExpsampleCopyConfig("expsample_2_treatment"),
-        new ArmCopyConfig("planned_visit_2_arm"),
         new SharedCopyConfig("standard_curve_2_file_info"),
         new StudyCopyConfig("study_2_panel"),
         new SharedCopyConfig("reagent_set_2_reagent"),
 
         // this is basically a materialized view, database->database copy
         new CopyConfig("immport", "q_subject_2_study", "immport", "subject_2_study", QueryUpdateService.InsertOption.IMPORT),
-
-        /*
-         *  DR20 new tables
-         */
 
         new StudyCopyConfig("assessment_panel"),
         new SharedCopyConfig("assessment_component")
@@ -792,9 +785,6 @@ public class DataLoader extends PipelineJob
             },
         new SharedCopyConfig("lk_analyte"),
         new SharedCopyConfig("lk_ancestral_population"),
-//        new LookupCopyConfig("lk_kir_gene"),
-//        new LookupCopyConfig("lk_kir_locus"),
-//        new LookupCopyConfig("lk_kir_present_absent"),
         new LookupCopyConfig("lk_organization", true),
         new LookupCopyConfig("lk_user_role_type"),
         new LookupCopyConfig("lk_visibility_category"),

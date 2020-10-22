@@ -8,7 +8,6 @@
     <transform id="study_2_panel" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="study_2_panel" targetOption="truncate" /></transform>
     <transform id="standard_curve_2_file_info" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="standard_curve_2_file_info" targetOption="truncate" /></transform>
     <transform id="reagent_2_fcs_marker" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="reagent_2_fcs_marker" targetOption="truncate" /></transform>
-    <transform id="planned_visit_2_arm" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="planned_visit_2_arm" targetOption="truncate" /></transform>
     <transform id="expsample_2_treatment" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="expsample_2_treatment" targetOption="truncate" /></transform>
     <transform id="control_sample_2_file_info" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="reagent_set_2_reagent" targetOption="truncate" /></transform>
     <transform id="subject_2_protocol" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="subject_2_protocol" targetOption="truncate" /></transform>
@@ -42,7 +41,6 @@
     <transform id="study_pubmed" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="study_pubmed" targetOption="truncate" /></transform>
     <transform id="study_personnel" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="study_personnel" targetOption="truncate" /></transform>
     <transform id="study_link" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="study_link" targetOption="truncate" /></transform>
-    <transform id="study_image" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="study_image" targetOption="truncate" /></transform>
     <transform id="study_glossary" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="study_glossary" targetOption="truncate" /></transform>
     <transform id="study_file" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="study_file" targetOption="truncate" /></transform>
     <transform id="study_categorization" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="study_categorization" targetOption="truncate" /></transform>
@@ -79,7 +77,6 @@
     <transform id="lk_unit_of_measure" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="lk_unit_of_measure" targetOption="truncate" /></transform>
     <transform id="lk_time_unit" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="lk_time_unit" targetOption="truncate" /></transform>
     <transform id="lk_t0_event" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="lk_t0_event" targetOption="truncate" /></transform>
-    <transform id="lk_study_type" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="lk_study_type" targetOption="truncate" /></transform>
     <transform id="lk_study_panel" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="lk_study_panel" targetOption="truncate" /></transform>
     <transform id="lk_study_file_type" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="lk_study_file_type" targetOption="truncate" /></transform>
     <transform id="lk_species" type="org.labkey.di.pipeline.TransformTask"> <destination schemaName="immport" queryName="lk_species" targetOption="truncate" /></transform>
