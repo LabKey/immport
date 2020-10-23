@@ -717,6 +717,31 @@
             <column columnName="visible"/>
         </columns>
     </table>
+    <table tableName="rna_seq_result" tableDbType="TABLE">
+        <columns>
+            <column columnName="result_id"/>
+            <column columnName="arm_accession"/>
+            <column columnName="biosample_accession"/>
+            <column columnName="comments"/>
+            <column columnName="experiment_accession"/>
+            <column columnName="expsample_accession"/>
+            <column columnName="reference_repository_name"/>
+            <column columnName="reference_transcript_id"/>
+            <column columnName="repository_accession"/>
+            <column columnName="repository_name"/>
+            <column columnName="result_unit_preferred"/>
+            <column columnName="result_unit_reported"/>
+            <column columnName="study_accession"/>
+            <column columnName="study_time_collected"/>
+            <column columnName="study_time_collected_unit"/>
+            <column columnName="subject_accession"/>
+            <column columnName="transcript_type_preferred"/>
+            <column columnName="transcript_type_reported"/>
+            <column columnName="value_preferred"/>
+            <column columnName="value_reported"/>
+            <column columnName="workspace_id"/>
+        </columns>
+    </table>
     <table tableName="lk_sample_type" tableDbType="TABLE">
         <columns>
             <column columnName="name"/>
@@ -904,21 +929,6 @@
             <column columnName="allele_1"/>
             <column columnName="allele_2"/>
             <column columnName="kir_haplotype"/>
-        </columns>
-    </table>
-    <table tableName="performance_metrics" tableDbType="TABLE">
-        <columns>
-            <column columnName="performance_metrics_id"/>
-            <column columnName="class_name"/>
-            <column columnName="duration"/>
-            <column columnName="end_time"/>
-            <column columnName="ip_address"/>
-            <column columnName="method_name"/>
-            <column columnName="parameter_values"/>
-            <column columnName="parameters"/>
-            <column columnName="session_id"/>
-            <column columnName="start_time"/>
-            <column columnName="username"/>
         </columns>
     </table>
     <table tableName="expsample_mbaa_detail" tableDbType="TABLE">

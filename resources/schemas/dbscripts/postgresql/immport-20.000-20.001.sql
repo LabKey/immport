@@ -7,6 +7,6 @@ CREATE TABLE immport.study_2_condition_or_disease
 );
 
 DROP TABLE IF EXISTS immport.lk_study_type;
-DROP TABLE IF EXISTS immport.study_image;
-DROP TABLE IF EXISTS immport.rna_seq_result;
+DROP TABLE IF EXISTS immport.performance_metrics;
 DROP TABLE IF EXISTS immport.planned_visit_2_arm;
+DROP TABLE IF EXISTS immport.study_image;

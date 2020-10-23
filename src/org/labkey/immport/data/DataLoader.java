@@ -724,6 +724,7 @@ public class DataLoader extends PipelineJob
         },
         new StudyCopyConfig("pcr_result"),
         new StudyCopyConfig("subject_measure_result"),
+        new StudyCopyConfig("rna_seq_result"),
 
             // junction tables
         new ArmCopyConfig("arm_2_subject"),
