@@ -39,9 +39,33 @@
             </column>
         </columns>
     </table>
+    <table tableName="lk_hmdb" tableDbType="TABLE">
+        <columns>
+            <column columnName="hmdb_id"/>
+            <column columnName="name"/>
+            <column columnName="description"/>
+            <column columnName="link"/>
+        </columns>
+    </table>
     <table tableName="lk_locus_name" tableDbType="TABLE">
         <columns>
             <column columnName="name"/>
+            <column columnName="description"/>
+            <column columnName="link"/>
+        </columns>
+    </table>
+    <table tableName="lk_mass_spectrometry_type" tableDbType="TABLE">
+        <columns>
+            <column columnName="name"/>
+            <column columnName="description"/>
+            <column columnName="link"/>
+        </columns>
+    </table>
+    <table tableName="lk_protein_name" tableDbType="TABLE">
+        <columns>
+            <column columnName="name"/>
+            <column columnName="uniprot_id"/>
+            <column columnName="uniprot_gene_name"/>
             <column columnName="description"/>
             <column columnName="link"/>
         </columns>
@@ -57,6 +81,13 @@
             <column columnName="name"/>
             <column columnName="comments"/>
             <column columnName="definition"/>
+            <column columnName="description"/>
+            <column columnName="link"/>
+        </columns>
+    </table>
+    <table tableName="lk_cell_population_marker" tableDbType="TABLE">
+        <columns>
+            <column columnName="name"/>
             <column columnName="description"/>
             <column columnName="link"/>
         </columns>
@@ -384,6 +415,14 @@
             <column columnName="type"/>
             <column columnName="workspace_id"/>
             <column columnName="restricted"/>
+        </columns>
+    </table>
+    <table tableName="study_data_release" tableDbType="TABLE">
+        <columns>
+            <column columnName="study_accession"/>
+            <column columnName="data_release_version"/>
+            <column columnName="data_release_date"/>
+            <column columnName="status"/>
         </columns>
     </table>
     <table tableName="lk_ancestral_population" tableDbType="TABLE">
@@ -1476,6 +1515,36 @@
         <columns>
             <column columnName="sampleid"/>
             <column columnName="assay"/>
+        </columns>
+    </table>
+    <table tableName="mass_spectrometry_result" tableDbType="TABLE">
+        <columns>
+            <column columnName="result_id"/>
+            <column columnName="arm_accession"/>
+            <column columnName="biosample_accession"/>
+            <column columnName="comments"/>
+            <column columnName="experiment_accession"/>
+            <column columnName="expsample_accession"/>
+            <column columnName="file_info_id"/>
+            <column columnName="intensity"/>
+            <column columnName="retention_time"/>
+            <column columnName="retention_time_unit"/>
+            <column columnName="m_z_ratio"/>
+            <column columnName="z_charge"/>
+            <column columnName="database_id_reported"/>
+            <column columnName="database_id_preferred"/>
+            <column columnName="mass_spectrometry_type"/>
+            <column columnName="metabolite_name_reported"/>
+            <column columnName="metabolite_name_preferred"/>
+            <column columnName="protein_name_reported"/>
+            <column columnName="protein_name_preferred"/>
+            <column columnName="repository_accession"/>
+            <column columnName="repository_name"/>
+            <column columnName="study_accession"/>
+            <column columnName="study_time_collected"/>
+            <column columnName="study_time_collected_unit"/>
+            <column columnName="subject_accession"/>
+            <column columnName="workspace_id"/>
         </columns>
     </table>
 </tables>

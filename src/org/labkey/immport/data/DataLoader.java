@@ -645,6 +645,7 @@ public class DataLoader extends PipelineJob
             // high-level tables
         new SharedCopyConfig("workspace"),
         new StudyCopyConfig("study"),
+        new StudyCopyConfig("study_data_release"),
         new SharedCopyConfig("subject"),
         new StudyCopyConfig("period"),
         new StudyCopyConfig("planned_visit"),
@@ -709,6 +710,7 @@ public class DataLoader extends PipelineJob
         new StudyCopyConfig("fcs_analyzed_result"),
         new StudyCopyConfig("hla_typing_result"),
         new StudyCopyConfig("kir_typing_result"),
+        new StudyCopyConfig("mass_spectrometry_result"),
         new StudyCopyConfig("mbaa_result"),
         new StudyCopyConfig("neut_ab_titer_result")
         {
@@ -784,11 +786,17 @@ public class DataLoader extends PipelineJob
                     job.info("" + rows + " " + (rows == 1 ? "row" : "rows") + " deleted from " + getTargetQuery());
                 }
             },
+
         new SharedCopyConfig("lk_analyte"),
         new SharedCopyConfig("lk_ancestral_population"),
+        new LookupCopyConfig("lk_cell_population_marker"),
+        new LookupCopyConfig("lk_hmdb"),
+        new LookupCopyConfig("lk_mass_spectrometry_type"),
         new LookupCopyConfig("lk_organization", true),
+        new LookupCopyConfig("lk_protein_name"),
         new LookupCopyConfig("lk_user_role_type"),
         new LookupCopyConfig("lk_visibility_category"),
+
         new SharedCopyConfig("personnel"),
         new SharedCopyConfig("program_2_personnel")
     };
