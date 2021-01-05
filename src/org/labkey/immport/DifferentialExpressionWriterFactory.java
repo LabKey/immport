@@ -11,9 +11,9 @@ import org.labkey.api.data.Container;
 import org.labkey.api.data.ContainerFilter;
 import org.labkey.api.data.DbSchema;
 import org.labkey.api.data.DbSchemaType;
+import org.labkey.api.data.ResultsFactory;
 import org.labkey.api.data.ResultsImpl;
 import org.labkey.api.data.SQLFragment;
-import org.labkey.api.data.SqlExecutor;
 import org.labkey.api.data.SqlSelector;
 import org.labkey.api.data.TSVGridWriter;
 import org.labkey.api.data.TSVWriter;
@@ -29,10 +29,8 @@ import org.labkey.api.writer.Writer;
 import org.labkey.folder.xml.FolderDocument;
 
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.util.Arrays;
 import java.util.Collection;
-
 
 public class DifferentialExpressionWriterFactory implements FolderWriterFactory
 {
@@ -48,8 +46,7 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
         return new _FolderWriter();
     }
 
-
-    class _FolderWriter implements FolderWriter
+    static class _FolderWriter implements FolderWriter
     {
         _FolderWriter()
         {
@@ -77,7 +74,6 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
         @Override
         public void initialize(ImportContext<FolderDocument.Folder> context)
         {
-
         }
 
         @Override
@@ -128,11 +124,11 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
                     sql.append(dbschema.getSqlDialect().concatenate("analysis_accession","'.'","(select name from core.containers where containers.entityid = container)")).append(" AS analysis_accession\n");
                 else
                     sql.append("analysis_accession\n");
-                sql.append(" FROM " + t.toString() + "\nWHERE ");
+                sql.append(" FROM ").append(t.toString()).append("\nWHERE ");
                 sql.append(cf.getSQLFragment(dbschema, new SQLFragment("container"), ctx.getContainer()));
-                try (ResultSet r = new SqlSelector(dbschema,sql).getResultSet())
+                ResultsFactory factory = ()->new ResultsImpl(new SqlSelector(dbschema,sql).getResultSet());
+                try (TSVGridWriter tsv = new TSVGridWriter(factory))
                 {
-                    TSVGridWriter tsv = new TSVGridWriter(new ResultsImpl(r));
                     tsv.setDelimiterCharacter(TSVWriter.DELIM.TAB);
                     tsv.setQuoteCharacter(TSVWriter.QUOTE.DOUBLE);
                     tsv.setColumnHeaderType(ColumnHeaderType.Name);
