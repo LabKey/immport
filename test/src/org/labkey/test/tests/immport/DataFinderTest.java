@@ -99,14 +99,14 @@ import static org.labkey.test.util.PermissionsHelper.MemberType;
 @Category({Git.class})
 public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTest, ReadOnlyTest
 {
-    private static File immPortArchive = TestFileUtils.getSampleData("HIPC/ANIMAL_STUDIES-DR23.zip");
-    private static File TEMPLATE_ARCHIVE = TestFileUtils.getSampleData("HIPC/SDY_template.zip");
-    private static String[] ANIMAL_STUDIES = {"SDY99", "SDY139", "SDY147", "SDY208", "SDY215", "SDY217"};
-    private static String[] STUDY_SUBFOLDERS = {"SDY139", "SDY147", "SDY208", "SDY217"};
-    private static String USER2_FOLDER = "SDY139";
-    private static String USER1 = "user1@immport.test";
-    private static String USER2 = "user2@immport.test";
-    private static String USER3 = "user3@immport.test";
+    private static final File immPortArchive = TestFileUtils.getSampleData("HIPC/ANIMAL_STUDIES-DR23.zip");
+    private static final File TEMPLATE_ARCHIVE = TestFileUtils.getSampleData("HIPC/SDY_template.zip");
+    private static final String[] ANIMAL_STUDIES = {"SDY99", "SDY139", "SDY147", "SDY208", "SDY215", "SDY217"};
+    private static final String[] STUDY_SUBFOLDERS = {"SDY139", "SDY147", "SDY208", "SDY217"};
+    private static final String USER2_FOLDER = "SDY139";
+    private static final String USER1 = "user1@immport.test";
+    private static final String USER2 = "user2@immport.test";
+    private static final String USER3 = "user3@immport.test";
 
     @Override
     protected String getProjectName()
@@ -162,8 +162,8 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
         containerHelper.createProject(getProjectName(), "Study");
         containerHelper.enableModule("ImmPort");
         ImmPortBeginPage
-                .beginAt(this, getProjectName())
-                .importArchive(immPortArchive, false);
+            .beginAt(this, getProjectName())
+            .importArchive(immPortArchive, false);
 
         goToProjectHome();
         clickButton("Create Study");
@@ -195,9 +195,9 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
         // Navigate to pipeline status page and show jobs in sub-folders
         beginAt("/pipeline-status/" + getProjectName() + "/showList.view?StatusFiles.containerFilterName=CurrentAndSubfolders");
         int expectedJobs =
-                  1                       // load ImmPort archive
-                + 1                       // SDY_template folder import
-                + STUDY_SUBFOLDERS.length // copy datasets jobs
+              1                       // load ImmPort archive
+            + 1                       // SDY_template folder import
+            + STUDY_SUBFOLDERS.length // copy datasets jobs
         ;
         waitForPipelineJobsToComplete(expectedJobs, "immport data copy", false);
 
@@ -1067,7 +1067,7 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
 
         log("Validate that the new notification is unread.");
         UserNotificationsPage.NotificationItem pageNotificationItemLastOne = notificationsPage.findNotificationInPage(groupsSent.get(0).groupName, UserNotificationsPage.NotificationTypes.STUDY);
-        assertFalse("The new notificaiton with group id: " + groupsSent.get(0).groupName + " is marked as read, it should not be.", pageNotificationItemLastOne.isRead());
+        assertFalse("The new notification with group id: " + groupsSent.get(0).groupName + " is marked as read, it should not be.", pageNotificationItemLastOne.isRead());
 
         log("Validate that the 'Mark All As Read' link does what it says it will do.");
         click(UserNotificationsPage.Locators.markAllAsRead);
