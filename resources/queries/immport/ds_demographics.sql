@@ -9,7 +9,13 @@ subject.subject_accession || '.' || SUBSTRING(study_accession,4) as participanti
 subject.subject_accession,
 subject.description,
 a2s.subject_phenotype AS phenotype,
-a2s.min_subject_age AS age_reported,
+a2s.min_subject_age as min_subject_age,
+a2s.max_subject_age as max_subject_age,
+CASE
+    WHEN a2s.min_subject_age IS NULL OR a2s.max_subject_age IS NULL THEN COALESCE(a2s.min_subject_age, a2s.max_subject_age)
+    WHEN a2s.min_subject_age = a2s.max_subject_age THEN a2s.min_subject_age
+    ELSE round( (a2s.min_subject_age + a2s.max_subject_age) / 2 )
+END AS age_reported,
 a2s.age_unit,
 a2s.age_event,
 a2s.age_event_specify,
