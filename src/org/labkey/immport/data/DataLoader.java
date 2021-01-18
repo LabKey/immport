@@ -42,6 +42,7 @@ import org.labkey.api.data.SqlSelector;
 import org.labkey.api.data.TableInfo;
 import org.labkey.api.data.TableSelector;
 import org.labkey.api.data.UpdateableTableInfo;
+import org.labkey.api.data.dialect.SqlDialect;
 import org.labkey.api.dataiterator.DataIterator;
 import org.labkey.api.dataiterator.DataIteratorBuilder;
 import org.labkey.api.dataiterator.DataIteratorContext;
@@ -163,7 +164,7 @@ public class DataLoader extends PipelineJob
     static int copy(final DataIteratorContext context, DataIteratorBuilder from, TableInfo to, Container c, User user, final DataLoader dl)
             throws IOException, BatchValidationException
     {
-        StandardDataIteratorBuilder etl = StandardDataIteratorBuilder.forInsert(to, from, c, user, context);
+        DataIteratorBuilder etl = StandardDataIteratorBuilder.forInsert(to, from, c, user, context);
         DataIteratorBuilder insert = ((UpdateableTableInfo)to).persistRows(etl, context);
         Pump pump = new Pump(insert, context);
         pump.setProgress(new ListImportProgress()
@@ -336,9 +337,9 @@ public class DataLoader extends PipelineJob
                 }
             }
 
-            StandardDataIteratorBuilder etl = StandardDataIteratorBuilder.forInsert(targetTableInfo, from, c, user, context);
+            DataIteratorBuilder etl = StandardDataIteratorBuilder.forInsert(targetTableInfo, from, c, user, context);
             //DataIteratorBuilder insert = ((UpdateableTableInfo)targetTableInfo).persistRows(etl, context);
-            DataIterator insert = new _StatementDataIterator(etl.getDataIterator(context),getParameterMap(),context);
+            DataIterator insert = new _StatementDataIterator(targetTableInfo.getSqlDialect(), etl.getDataIterator(context),getParameterMap(),context);
             Pump pump = new Pump(insert, context);
             pump.setProgress(new ListImportProgress()
             {
@@ -363,9 +364,9 @@ public class DataLoader extends PipelineJob
 
     static class _StatementDataIterator extends StatementDataIterator
     {
-        _StatementDataIterator(DataIterator data, @Nullable ParameterMapStatement map, DataIteratorContext context)
+        _StatementDataIterator(SqlDialect dialect, DataIterator data, @Nullable ParameterMapStatement map, DataIteratorContext context)
         {
-            super(data, context, map);
+            super(dialect, data, context, map);
         }
     }
 
