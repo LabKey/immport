@@ -56,7 +56,6 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 public class ImmPortModule extends DefaultModule
 {
     public static final String NAME = "ImmPort";
-    public static final String PROPERTY_PROXYFINDERURI = "proxyTargetUri";
     public static final String PROPERTY_DATAFINDERURI = "dataFinderUri";
 
     public static final SearchService.SearchCategory searchCategoryStudy = new SearchService.SearchCategory("immport_study", "ImmPort Study", false);
@@ -99,10 +98,6 @@ public class ImmPortModule extends DefaultModule
 
         // override the base RExportScriptFactory to use a script based on the ImmuneSpaceR package
         QueryView.register(new ImmuneSpaceRExportScriptFactory(), true);
-
-        ModuleProperty proxyTarget = new ModuleProperty(this, PROPERTY_PROXYFINDERURI, ModuleProperty.InputType.text, "target for RApi proxy servlet (/_rapi/)", "target uri", false);
-        proxyTarget.setEditPermissions(Arrays.asList(AdminOperationsPermission.class));
-        addModuleProperty(proxyTarget);
 
         ModuleProperty studyFinder = new ModuleProperty(this, PROPERTY_DATAFINDERURI, ModuleProperty.InputType.text, "URL for data finder, default /Studies/project-begin.view", "datafinder url", true)
         {
