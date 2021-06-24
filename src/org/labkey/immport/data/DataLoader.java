@@ -1082,7 +1082,7 @@ public class DataLoader extends PipelineJob
                         indexFK = i;
             }
 
-            return new WrapperDataIterator(_source.getDataIterator(context))
+            return new WrapperDataIterator(di)
             {
                 @Override
                 public Object get(int i)
