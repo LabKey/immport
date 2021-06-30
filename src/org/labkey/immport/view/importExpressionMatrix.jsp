@@ -38,7 +38,7 @@
         selectedPath = StringUtils.trimToEmpty(form.getXarPath());
         Path p = Path.parse(selectedPath).normalize();
         if (null == p)
-            throw new BadRequestException("bad request", null);
+            throw new BadRequestException();
         File selectedFile = new File(base,p.toString());
         if (selectedFile.isFile())
         {
