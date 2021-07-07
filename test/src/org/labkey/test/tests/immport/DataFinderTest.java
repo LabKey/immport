@@ -608,9 +608,9 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
             datasetCounts.put(name, numRows.intValue());
         }
 
-        Assert.assertEquals(new Integer(345), datasetCounts.get("demographics"));
-        Assert.assertEquals(new Integer(960), datasetCounts.get("elispot"));
-        Assert.assertEquals(new Integer(fcs_analyzed_rowCount), datasetCounts.get("fcs_analyzed_result"));
+        Assert.assertEquals(Integer.valueOf(345), datasetCounts.get("demographics"));
+        Assert.assertEquals(Integer.valueOf(960), datasetCounts.get("elispot"));
+        Assert.assertEquals(Integer.valueOf(fcs_analyzed_rowCount), datasetCounts.get("fcs_analyzed_result"));
 
 
         log("Download datasets zip");
