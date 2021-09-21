@@ -226,7 +226,7 @@ public class DataLoader extends PipelineJob
             ColumnDescriptor[] cols = null;
             if (null == tsvFile && null == loadFile)
             {
-                context.getErrors().addRowError(new ValidationException("Could not find data file: " + file + ".txt"));
+                log.warn("Data file does not exist: " + file + ".(txt|load)");
                 return null;
             }
 
