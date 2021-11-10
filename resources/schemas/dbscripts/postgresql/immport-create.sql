@@ -576,7 +576,8 @@ BEGIN
       LEFT OUTER JOIN (SELECT study_accession, MIN(contract_grant_id) as contract_grant_id FROM immport.contract_grant_2_study GROUP BY study_accession) cg2s ON study.study_accession = cg2s.study_accession
       LEFT OUTER JOIN immport.contract_grant C ON cg2s.contract_grant_id = C.contract_grant_id
       LEFT OUTER JOIN immport.program P on C.program_id = P.program_id
-      LEFT OUTER JOIN immport.study_categorization ON study.study_accession = study_categorization.study_accession
+-- NOTE: In DR41 SDY1774 has TWO rows in study_categorization.  This is not currently supported by the datafinder
+      LEFT OUTER JOIN (SELECT study_accession,  MIN(research_focus) AS research_focus FROM immport.study_categorization GROUP BY study_accession) study_categorization ON study.study_accession = study_categorization.study_accession
       LEFT OUTER JOIN
        (
            SELECT array_to_string(array_agg(DISTINCT first_name || ' ' || last_name), ', ') AS pi_names, study_accession

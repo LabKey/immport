@@ -1,0 +1,1 @@
+ALTER TABLE immport.lab_test ALTER COLUMN name_preferred TYPE VARCHAR(100);
