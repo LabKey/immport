@@ -37,7 +37,7 @@ FROM (
       q_GEF.file_info_name AS file_info_name,
       q_GEF.filesize AS filesize,
       q_GEO.expsample_accession AS geo_es,
-      q_GEO.name AS geo_name,
+      q_GEO.name AS geo_name
     FROM q_GEF FULL OUTER JOIN q_GEO ON q_GEF.name = q_GEO.name
                                     AND q_GEF.expsample_accession = q_GEO.expsample_accession
   ) AS ge_links
@@ -50,4 +50,3 @@ biosample.subject_accession = arm_2_subject.subject_accession AND
 arm_2_subject.arm_accession = arm_or_cohort.arm_accession AND
 biosample.study_accession = arm_or_cohort.study_accession
 AND ($STUDY IS NULL OR $STUDY = biosample.study_accession)
-

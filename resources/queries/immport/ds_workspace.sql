@@ -10,10 +10,7 @@ PARAMETERS($STUDY VARCHAR DEFAULT NULL)
 SELECT DISTINCT
 dataset.file_info_name,
 dataset.filesize,
-dataset.study_accession,
---dataset.biosample_accession,
---dataset.experiment_accession,
---dataset.expsample_accession
+dataset.study_accession
 FROM(
    SELECT
 	file_info.name AS file_info_name,
@@ -38,4 +35,4 @@ FROM(
 	biosample.study_accession = arm_or_cohort.study_accession AND
 	(file_info.name LIKE '%.xml' OR file_info.name LIKE '%.jo') AND
 	file_info.detail = 'Flow cytometry workspace' AND 
-	($STUDY IS NULL OR $STUDY = biosample.study_accession)) AS dataset 
+	($STUDY IS NULL OR $STUDY = biosample.study_accession)) AS dataset
