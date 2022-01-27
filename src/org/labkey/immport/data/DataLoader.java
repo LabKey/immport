@@ -563,6 +563,11 @@ public class DataLoader extends PipelineJob
             super(table);
         }
 
+        ExperimentCopyConfig(String table, QueryUpdateService.InsertOption insertOption)
+        {
+            super(table, insertOption);
+        }
+
         @Override
         public void deleteFromTarget(PipelineJob job, List<String> studies) throws IOException, SQLException
         {
@@ -660,7 +665,7 @@ public class DataLoader extends PipelineJob
         new SharedCopyConfig("reagent"),
         new SharedCopyConfig("treatment"),
         new StudyCopyConfig("adverse_event"),
-        new ExperimentCopyConfig("control_sample"),
+        new ExperimentCopyConfig("control_sample", QueryUpdateService.InsertOption.MERGE),
         new SharedCopyConfig("expsample_mbaa_detail"),
         new SharedCopyConfig("expsample_public_repository"),
         new SharedCopyConfig("inclusion_exclusion"),
@@ -668,7 +673,7 @@ public class DataLoader extends PipelineJob
         new BiosampleCopyConfig("lab_test"),
         new StudyCopyConfig("protocol_deviation"),
         new StudyCopyConfig("reported_early_termination"),
-        new ExperimentCopyConfig("standard_curve"),
+        new ExperimentCopyConfig("standard_curve", QueryUpdateService.InsertOption.MERGE),
         new StudyCopyConfig("study_categorization"),
         new StudyCopyConfig("study_file"),
         new StudyCopyConfig("study_glossary"),
