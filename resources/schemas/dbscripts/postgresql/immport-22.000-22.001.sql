@@ -1,0 +1,1 @@
+ALTER TABLE immport.lk_disease ALTER COLUMN name TYPE VARCHAR(100);
