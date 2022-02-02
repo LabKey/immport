@@ -2,10 +2,9 @@ package org.labkey.immport;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.labkey.api.admin.FolderImportContext;
 import org.labkey.api.admin.FolderImporter;
 import org.labkey.api.admin.FolderImporterFactory;
-import org.labkey.api.admin.ImportContext;
-import org.labkey.api.admin.ImportException;
 import org.labkey.api.data.Container;
 import org.labkey.api.data.TableInfo;
 import org.labkey.api.module.Module;
@@ -20,7 +19,6 @@ import org.labkey.api.reader.TabLoader;
 import org.labkey.api.security.User;
 import org.labkey.api.writer.VirtualFile;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -28,7 +26,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
 
 import static org.labkey.immport.DifferentialExpressionWriterFactory.DATA_TYPE;
 import static org.labkey.immport.DifferentialExpressionWriterFactory.DIRECTORY_NAME;
@@ -50,7 +47,7 @@ public class DifferentialExpressionImporterFactory implements FolderImporterFact
     }
 
 
-    private class _FolderImporter implements FolderImporter
+    private static class _FolderImporter implements FolderImporter
     {
         @Override
         public String getDataType()
@@ -65,7 +62,7 @@ public class DifferentialExpressionImporterFactory implements FolderImporterFact
         }
 
         @Override
-        public void process(@Nullable PipelineJob job, ImportContext ctx, VirtualFile root) throws Exception
+        public void process(@Nullable PipelineJob job, FolderImportContext ctx, VirtualFile root) throws Exception
         {
             boolean hasData = false;
 
@@ -122,28 +119,9 @@ public class DifferentialExpressionImporterFactory implements FolderImporterFact
 
         @NotNull
         @Override
-        public Collection<PipelineJobWarning> postProcess(ImportContext ctx, VirtualFile root) throws Exception
+        public Collection<PipelineJobWarning> postProcess(FolderImportContext ctx, VirtualFile root)
         {
             return Collections.emptyList();
-        }
-
-        @Nullable
-        @Override
-        public Map<String, Boolean> getChildrenDataTypes(ImportContext ctx) throws ImportException
-        {
-            return null;
-        }
-
-        @Override
-        public boolean isValidForImportArchive(ImportContext ctx) throws ImportException
-        {
-            return true;
-        }
-
-        @Override
-        public ImportContext getImporterSpecificImportContext(String archiveFilePath, User user, Container container) throws IOException
-        {
-            return null;
         }
     }
 }
