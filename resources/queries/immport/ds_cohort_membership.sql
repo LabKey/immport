@@ -9,7 +9,8 @@ SELECT
 subject.subject_accession || '.' || SUBSTRING(study_accession,4) as participantid,
 subject.subject_accession,
 CAST(0 AS INTEGER) as sequencenum,
-arm_or_cohort.*
+arm_or_cohort.*,
+COALESCE(arm_or_cohort.type_preferred, arm_or_cohort.type_reported) as type
 FROM subject
   LEFT OUTER JOIN arm_2_subject ON subject.subject_accession = arm_2_subject.subject_accession
   LEFT OUTER JOIN arm_or_cohort ON arm_2_subject.arm_accession = arm_or_cohort.arm_accession
