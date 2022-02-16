@@ -1026,7 +1026,8 @@
             <column columnName="description"/>
             <column columnName="name"/>
             <column columnName="study_accession"/>
-            <column columnName="type"/>
+            <column columnName="type_reported"/>
+            <column columnName="type_preferred"/>
             <column columnName="workspace_id"/>
         </columns>
     </table>
