@@ -1,1 +1,0 @@
-ALTER TABLE immport.file_info ALTER COLUMN filesize_bytes TYPE INT8;
