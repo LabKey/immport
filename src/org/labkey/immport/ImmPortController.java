@@ -1189,9 +1189,9 @@ public class ImmPortController extends SpringActionController
                 final XarSource source = new AbstractFileXarSource("Expression Matrix import", getContainer(), getUser())
                 {
                     @Override
-                    public File getLogFile() throws IOException
+                    public Path getLogFilePath()
                     {
-                        return ImportPipelineJob.this.getLogFile();
+                        return ImportPipelineJob.this.getLogFilePath();
                     }
                     @Override
                     protected Path getXmlFile()
