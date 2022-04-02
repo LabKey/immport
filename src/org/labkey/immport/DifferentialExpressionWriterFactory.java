@@ -2,10 +2,11 @@ package org.labkey.immport;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
-import org.labkey.api.admin.AbstractFolderContext;
+import org.labkey.api.admin.AbstractFolderContext.ExportType;
+import org.labkey.api.admin.FolderExportContext;
 import org.labkey.api.admin.FolderWriter;
 import org.labkey.api.admin.FolderWriterFactory;
-import org.labkey.api.admin.ImportContext;
+import org.labkey.api.admin.ImportExportContext;
 import org.labkey.api.data.ColumnHeaderType;
 import org.labkey.api.data.Container;
 import org.labkey.api.data.ContainerFilter;
@@ -66,13 +67,13 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
         }
 
         @Override
-        public boolean selectedByDefault(AbstractFolderContext.ExportType type)
+        public boolean selectedByDefault(ExportType type)
         {
             return true;
         }
 
         @Override
-        public void initialize(ImportContext<FolderDocument.Folder> context)
+        public void initialize(FolderExportContext context)
         {
         }
 
@@ -90,7 +91,7 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
         }
 
         @Override
-        public void write(Container object, ImportContext<FolderDocument.Folder> ctx, VirtualFile root) throws Exception
+        public void write(Container object, ImportExportContext<FolderDocument.Folder> ctx, VirtualFile root) throws Exception
         {
             VirtualFile outputDir = root.getDir(DIRECTORY_NAME);
             Container c = ctx.getContainer();
