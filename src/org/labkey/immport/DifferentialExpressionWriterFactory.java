@@ -6,7 +6,6 @@ import org.labkey.api.admin.AbstractFolderContext.ExportType;
 import org.labkey.api.admin.FolderExportContext;
 import org.labkey.api.admin.FolderWriter;
 import org.labkey.api.admin.FolderWriterFactory;
-import org.labkey.api.admin.ImportExportContext;
 import org.labkey.api.data.ColumnHeaderType;
 import org.labkey.api.data.Container;
 import org.labkey.api.data.ContainerFilter;
@@ -27,7 +26,6 @@ import org.labkey.api.study.Study;
 import org.labkey.api.study.StudyService;
 import org.labkey.api.writer.VirtualFile;
 import org.labkey.api.writer.Writer;
-import org.labkey.folder.xml.FolderDocument;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -91,7 +89,7 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
         }
 
         @Override
-        public void write(Container object, ImportExportContext<FolderDocument.Folder> ctx, VirtualFile root) throws Exception
+        public void write(Container container, FolderExportContext ctx, VirtualFile root) throws Exception
         {
             VirtualFile outputDir = root.getDir(DIRECTORY_NAME);
             Container c = ctx.getContainer();
