@@ -89,10 +89,11 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
         }
 
         @Override
-        public void write(Container container, FolderExportContext ctx, VirtualFile root) throws Exception
+        public void write(Container c, FolderExportContext ctx, VirtualFile root) throws Exception
         {
+            assert ctx.getContainer().equals(c); // TODO: Temporary check - remove
+
             VirtualFile outputDir = root.getDir(DIRECTORY_NAME);
-            Container c = ctx.getContainer();
             User user = ctx.getUser();
             StudyService ss = StudyService.get();
             Study s = null==ss ? null : ss.getStudy(c);
@@ -124,7 +125,7 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
                 else
                     sql.append("analysis_accession\n");
                 sql.append(" FROM ").append(t.toString()).append("\nWHERE ");
-                sql.append(cf.getSQLFragment(dbschema, new SQLFragment("container"), ctx.getContainer()));
+                sql.append(cf.getSQLFragment(dbschema, new SQLFragment("container"), c));
                 ResultsFactory factory = ()->new ResultsImpl(new SqlSelector(dbschema,sql).getResultSet());
                 try (TSVGridWriter tsv = new TSVGridWriter(factory))
                 {
