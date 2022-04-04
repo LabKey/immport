@@ -25,11 +25,9 @@ import org.labkey.api.study.DataspaceContainerFilter;
 import org.labkey.api.study.Study;
 import org.labkey.api.study.StudyService;
 import org.labkey.api.writer.VirtualFile;
-import org.labkey.api.writer.Writer;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Collection;
 
 public class DifferentialExpressionWriterFactory implements FolderWriterFactory
 {
@@ -49,12 +47,6 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
     {
         _FolderWriter()
         {
-        }
-
-        @Override
-        public @Nullable Collection<Writer> getChildren(boolean sort, boolean forTemplate)
-        {
-            return null;
         }
 
         @Override
