@@ -83,8 +83,6 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
         @Override
         public void write(Container c, FolderExportContext ctx, VirtualFile root) throws Exception
         {
-            assert ctx.getContainer().equals(c); // TODO: Temporary check - remove
-
             VirtualFile outputDir = root.getDir(DIRECTORY_NAME);
             User user = ctx.getUser();
             StudyService ss = StudyService.get();
