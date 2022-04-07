@@ -2,10 +2,10 @@ package org.labkey.immport;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
-import org.labkey.api.admin.AbstractFolderContext;
+import org.labkey.api.admin.AbstractFolderContext.ExportType;
+import org.labkey.api.admin.FolderExportContext;
 import org.labkey.api.admin.FolderWriter;
 import org.labkey.api.admin.FolderWriterFactory;
-import org.labkey.api.admin.ImportContext;
 import org.labkey.api.data.ColumnHeaderType;
 import org.labkey.api.data.Container;
 import org.labkey.api.data.ContainerFilter;
@@ -25,12 +25,9 @@ import org.labkey.api.study.DataspaceContainerFilter;
 import org.labkey.api.study.Study;
 import org.labkey.api.study.StudyService;
 import org.labkey.api.writer.VirtualFile;
-import org.labkey.api.writer.Writer;
-import org.labkey.folder.xml.FolderDocument;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Collection;
 
 public class DifferentialExpressionWriterFactory implements FolderWriterFactory
 {
@@ -53,12 +50,6 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
         }
 
         @Override
-        public @Nullable Collection<Writer> getChildren(boolean sort, boolean forTemplate)
-        {
-            return null;
-        }
-
-        @Override
         public boolean show(Container c)
         {
             QuerySchema schema = DefaultSchema.get(User.getSearchUser(), c).getSchema(SCHEMA_NAME);
@@ -66,13 +57,13 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
         }
 
         @Override
-        public boolean selectedByDefault(AbstractFolderContext.ExportType type)
+        public boolean selectedByDefault(ExportType type)
         {
             return true;
         }
 
         @Override
-        public void initialize(ImportContext<FolderDocument.Folder> context)
+        public void initialize(FolderExportContext context)
         {
         }
 
@@ -90,10 +81,9 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
         }
 
         @Override
-        public void write(Container object, ImportContext<FolderDocument.Folder> ctx, VirtualFile root) throws Exception
+        public void write(Container c, FolderExportContext ctx, VirtualFile root) throws Exception
         {
             VirtualFile outputDir = root.getDir(DIRECTORY_NAME);
-            Container c = ctx.getContainer();
             User user = ctx.getUser();
             StudyService ss = StudyService.get();
             Study s = null==ss ? null : ss.getStudy(c);
@@ -125,7 +115,7 @@ public class DifferentialExpressionWriterFactory implements FolderWriterFactory
                 else
                     sql.append("analysis_accession\n");
                 sql.append(" FROM ").append(t.toString()).append("\nWHERE ");
-                sql.append(cf.getSQLFragment(dbschema, new SQLFragment("container"), ctx.getContainer()));
+                sql.append(cf.getSQLFragment(dbschema, new SQLFragment("container"), c));
                 ResultsFactory factory = ()->new ResultsImpl(new SqlSelector(dbschema,sql).getResultSet());
                 try (TSVGridWriter tsv = new TSVGridWriter(factory))
                 {
