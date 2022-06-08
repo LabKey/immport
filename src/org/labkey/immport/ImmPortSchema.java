@@ -238,6 +238,7 @@ public class ImmPortSchema extends UserSchema
         accessions.put("subject_accession","subject");
         accessions.put("treatment_accession","treatment");
         accessions.put("workspace_id","workspace");
+        accessions.put("subject_location","lk_subject_location");
     }
 
 
