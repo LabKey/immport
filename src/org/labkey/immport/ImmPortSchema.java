@@ -227,7 +227,7 @@ public class ImmPortSchema extends UserSchema
     static CaseInsensitiveTreeMap<String> accessions = new CaseInsensitiveTreeMap<>();
     static
     {
-        accessions.put("analyte_accession","lk_`analyte");
+        accessions.put("analyte_accession","lk_analyte");
         accessions.put("arm_accession","arm_or_cohort");
         accessions.put("biosample_accession","biosample");
         accessions.put("experiment_accession","experiment");
