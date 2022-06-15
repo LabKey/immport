@@ -15,6 +15,12 @@
             <column columnName="max_subject_age"/>
             <column columnName="min_subject_age"/>
             <column columnName="subject_phenotype"/>
+            <column columnName="subject_location">
+                <fk>
+                    <fkTable>lk_subject_location</fkTable>
+                    <fkColumnName>name</fkColumnName>
+                </fk>
+            </column>
         </columns>
     </table>
     <table tableName="expsample" tableDbType="TABLE">
