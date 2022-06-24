@@ -654,7 +654,7 @@ public class DataLoader extends PipelineJob
         new StudyCopyConfig("study"),
         new StudyCopyConfig("study_data_release"),
         new SharedCopyConfig("subject"),
-        new StudyCopyConfig("period"),
+        // removed DR44 new StudyCopyConfig("period"),
         new StudyCopyConfig("planned_visit"),
         new StudyCopyConfig("arm_or_cohort"),
         new StudyCopyConfig("biosample"),
@@ -669,18 +669,18 @@ public class DataLoader extends PipelineJob
         new SharedCopyConfig("expsample_mbaa_detail"),
         new SharedCopyConfig("expsample_public_repository"),
         new SharedCopyConfig("inclusion_exclusion"),
-        new StudyCopyConfig("reference_range"),
+        // removed DR44 new StudyCopyConfig("reference_range"),
         new BiosampleCopyConfig("lab_test"),
-        new StudyCopyConfig("protocol_deviation"),
-        new StudyCopyConfig("reported_early_termination"),
+        // removed DR44 new StudyCopyConfig(`"protocol_dev`iation"),
+        // removed DR44 new StudyCopyConfig("reported_early_termination"),
         new ExperimentCopyConfig("standard_curve", QueryUpdateService.InsertOption.MERGE),
         new StudyCopyConfig("study_categorization"),
         new StudyCopyConfig("study_file"),
-        new StudyCopyConfig("study_glossary"),
+        // removed DR44 new StudyCopyConfig("study_glossary"),
         new StudyCopyConfig("study_link"),
         new StudyCopyConfig("study_personnel"),
         new StudyCopyConfig("study_pubmed"),
-        new StudyCopyConfig("subject_measure_definition"),
+        // removed DR44 new StudyCopyConfig("subject_measure_definition"),
             // lots of duplicates in contract_grant, is this only the test data???
             // force using merge by override updateInsertOptionBeforeCopy()
         new SharedCopyConfig("contract_grant")
@@ -732,7 +732,7 @@ public class DataLoader extends PipelineJob
             }
         },
         new StudyCopyConfig("pcr_result"),
-        new StudyCopyConfig("subject_measure_result"),
+        // removed DR44 new StudyCopyConfig("subject_measure_result"),
 
             // junction tables
         new ArmCopyConfig("arm_2_subject"),
@@ -773,11 +773,11 @@ public class DataLoader extends PipelineJob
         new StudyCopyConfig("contract_grant_2_study"),
 
         new SharedCopyConfig("fcs_analyzed_result_marker"),
-        new SharedCopyConfig("fcs_header_marker_2_reagent"),
+        // removed DR44 new SharedCopyConfig("fcs_header_marker_2_reagent"),
 
         new StudyCopyConfig("intervention"),
         new StudyCopyConfig("lab_test_panel"),
-            new ImmPortCopyConfig("lab_test_panel_2_protocol")
+        new ImmPortCopyConfig("lab_test_panel_2_protocol")
             {
                 @Override
                 public void deleteFromTarget(PipelineJob job, List<String> studies) throws IOException, SQLException
