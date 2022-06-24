@@ -1,0 +1,1 @@
+ALTER TABLE immport.immune_exposure ALTER COLUMN disease_reported TYPE VARCHAR(250);
