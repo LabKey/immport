@@ -73,7 +73,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -624,7 +624,7 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
         try (FileSystem fs = FileSystems.newFileSystem(exportedFile.toPath(), (ClassLoader) null)) // 'null' is ambiguous in Java 13+
         {
             // Extract a file
-            List<String> lines = Files.readAllLines(fs.getPath("fcs_analyzed_result.tsv"), Charset.forName("UTF-8"));
+            List<String> lines = Files.readAllLines(fs.getPath("fcs_analyzed_result.tsv"), StandardCharsets.UTF_8);
             Assert.assertEquals(
                     "Expected " + fcs_analyzed_rowCount + " rows and header (dumping first two lines):\n" +
                             StringUtils.join(lines.subList(0, 2), "\n"),
@@ -899,7 +899,7 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
         final int SENT_CLICK_DISMISS_LINK = 5;
 
         log("Turn on the experimental feature.");
-        Connection cn = createDefaultConnection(true);
+        Connection cn = createDefaultConnection();
         ExperimentalFeaturesHelper.setExperimentalFeature(cn, "experimental-notificationmenu", true);
 
         goToProjectHome();
