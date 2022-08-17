@@ -240,9 +240,9 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
 
     public void clearSharedStudyContainerFilter() throws IOException, CommandException
     {
-        Connection connection = createDefaultConnection(true);
+        Connection connection = createDefaultConnection();
         new WhoAmICommand().execute(connection, "/"); // Populate session & csrf
-        Command command = new Command("study-shared", "sharedStudyContainerFilter")
+        Command<?> command = new Command<>("study-shared", "sharedStudyContainerFilter")
         {
             @Override
             protected HttpUriRequest createRequest(URI uri)
@@ -1211,7 +1211,7 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
         assertTrue("Unexpected error(s) when sending group: [" + String.join(",", errors) + "]", errors.isEmpty());
 
         // If send worked you should be on another page now.
-        if(getURL().getPath().contains("sendParticipantGroup.view?"))
+        if(getURL().getPath().contains("sendParticipantGroup.view"))
         {
             Assert.fail("Did not navigate away from 'study-sendParticipantGroup.view' after clicking send (should have). And no error message was shown on the page (and there should have been).");
         }
