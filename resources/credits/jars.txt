@@ -1,4 +1,0 @@
-{table}
-Filename|Component|Version|Source|License|LabKey Dev|Purpose
-commons-vfs2-2.0.jar|ImmPort|2.0|{link:Apache Commons VFS|https://commons.apache.org/proper/commons-vfs/}|{link:Apache 2.0|http://www.apache.org/licenses/LICENSE-2.0}|matthewb|Virtual File System support
-{table}
