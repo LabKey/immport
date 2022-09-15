@@ -18,8 +18,8 @@ package org.labkey.test.tests.immport;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.hc.client5.http.classic.methods.HttpDelete;
+import org.apache.hc.client5.http.classic.methods.HttpUriRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
