@@ -21,7 +21,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.old.JSONObject;
+import org.json.JSONObject;
 import org.labkey.api.action.Action;
 import org.labkey.api.action.ActionType;
 import org.labkey.api.action.ApiSimpleResponse;
@@ -918,10 +918,6 @@ public class ImmPortController extends SpringActionController
         }
     }
 
-
-
-
-
     public class PublishExpressionMatrixForm
     {
         public PublishExpressionMatrixForm()
@@ -1230,7 +1226,7 @@ public class ImmPortController extends SpringActionController
     public static class TestProxyTargetAction extends ReadOnlyApiAction<Object>
     {
         @Override
-        public Object execute(Object o, BindException errors) throws Exception
+        public Object execute(Object o, BindException errors)
         {
             var req = getViewContext().getRequest();
 
