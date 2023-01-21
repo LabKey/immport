@@ -19,7 +19,6 @@ package org.labkey.test.tests.immport;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
-import org.apache.hc.client5.http.classic.methods.HttpUriRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -28,6 +27,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.labkey.remoteapi.Command;
 import org.labkey.remoteapi.CommandException;
+import org.labkey.remoteapi.CommandResponse;
 import org.labkey.remoteapi.Connection;
 import org.labkey.remoteapi.security.WhoAmICommand;
 import org.labkey.test.BaseWebDriverTest;
@@ -242,10 +242,10 @@ public class DataFinderTest extends BaseWebDriverTest implements PostgresOnlyTes
     {
         Connection connection = createDefaultConnection();
         new WhoAmICommand().execute(connection, "/"); // Populate session & csrf
-        Command<?> command = new Command<>("study-shared", "sharedStudyContainerFilter")
+        Command<CommandResponse, HttpDelete> command = new Command<>("study-shared", "sharedStudyContainerFilter")
         {
             @Override
-            protected HttpUriRequest createRequest(URI uri)
+            protected HttpDelete createRequest(URI uri)
             {
                 return new HttpDelete(uri);
             }
