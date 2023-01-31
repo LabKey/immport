@@ -50,6 +50,8 @@ public class ImmuneSpaceRExportTest extends BaseWebDriverTest implements Postgre
     public void testProjectDataset()
     {
         goToProjectHome();
+        // Expect that the list of datasets should still be present from the folder archive import, even after we've
+        // reset the folder type to Dataspace
         clickAndWait(Locator.linkContainingText(DATASET_NAME));
         verifyRExportScript(true, "", "Dataset", "study", DATASET_NAME.toLowerCase(), DATASET_COLUMN_NAME, "project");
     }
@@ -58,6 +60,8 @@ public class ImmuneSpaceRExportTest extends BaseWebDriverTest implements Postgre
     public void testProjectList()
     {
         goToProjectHome();
+        // Expect that the list of lists should still be present from the folder archive import, even after we've
+        // reset the folder type to Dataspace
         clickAndWait(Locator.linkContainingText(LIST_NAME));
         verifyRExportScript(false, "", "query", "lists", LIST_NAME, LIST_COLUMN_NAME, null);
     }
