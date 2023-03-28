@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    external 'org.apache.commons:commons-vfs2:7.0'
+    external 'org.apache.commons:commons-vfs2:2.0'
 }
 BuildUtils.addLabKeyDependency(project: project, config: "implementation", depProjectPath: ":server:modules:dataintegration", depProjectConfig: "apiJarFile")
 BuildUtils.addLabKeyDependency(project: project, config: "modules", depProjectPath: BuildUtils.getPlatformModuleProjectPath(project.gradle, "study"), depProjectConfig: "published", depExtension: "module")
