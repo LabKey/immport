@@ -8,7 +8,7 @@ plugins {
 BuildUtils.addExternalDependency(
     project,
     new ExternalDependency(
-        "org.apache.commons:commons-vfs2:2.0",
+        "org.apache.commons:commons-vfs2:2.7.0",
         "Commons Virtual File System",
         "Apache",
         "https://commons.apache.org/proper/commons-vfs/",
